@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"log"
 	"os"
+	"strconv"
 )
 
 func Check(err error) {
@@ -25,4 +26,16 @@ func ReadLines(filename string) []string {
 	}
 	Check(scanner.Err())
 	return lines
+}
+
+func ToIntMust(a string) int {
+	n, _ := strconv.Atoi(a)
+	return n
+}
+
+func MakeAbsolute(n int) int {
+	if n < 0 {
+		return -n
+	}
+	return n
 }
