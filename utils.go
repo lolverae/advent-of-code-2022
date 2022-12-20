@@ -1,7 +1,6 @@
 package aoc2022
 
 import (
-	"bufio"
 	"log"
 	"os"
 	"strconv"
@@ -13,19 +12,10 @@ func Check(err error) {
 	}
 }
 
-func ReadLines(filename string) []string {
-	file, err := os.Open(filename)
+func ReadLines(filename string) []byte {
+	file, err := os.ReadFile(filename)
 	Check(err)
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
-	lines := make([]string, 0)
-	for scanner.Scan() {
-		line := scanner.Text()
-		lines = append(lines, line)
-	}
-	Check(scanner.Err())
-	return lines
+	return file
 }
 
 func ToIntMust(a string) int {
@@ -38,4 +28,18 @@ func MakeAbsolute(n int) int {
 		return -n
 	}
 	return n
+}
+
+func GetMin(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func GetMax(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
